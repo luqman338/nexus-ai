@@ -1,7 +1,8 @@
+
 'use client';
 
 import React, { useState } from 'react';
-import { CheckCircle, Zap, Shield, ArrowRight, Loader2, Code2, GitMerge, Share2 } from 'lucide-react';
+import { CheckCircle, Zap, ArrowRight, Loader2, GitBranch, Terminal, ShieldAlert } from 'lucide-react';
 
 export default function LandingPage() {
   const [email, setEmail] = useState('');
@@ -11,176 +12,120 @@ export default function LandingPage() {
     e.preventDefault();
     if (!email) return;
     setStatus('loading');
-    // Simulate high-performance API response
     setTimeout(() => setStatus('success'), 1200);
   };
 
   return (
-    <div className="min-h-screen bg-[#0a0a0a] text-slate-50 font-sans selection:bg-blue-500/30 overflow-x-hidden">
+    <div className="relative min-h-screen bg-black text-white selection:bg-indigo-500/30 overflow-x-hidden font-sans">
       
-      {/* BACKGROUND GLOW EFFECTS (Zero JS, CSS Only for max performance) */}
-      <div className="fixed top-[-20%] left-[-10%] w-[50%] h-[50%] bg-blue-600/20 rounded-full blur-[150px] pointer-events-none -z-10" />
-      <div className="fixed bottom-[-10%] right-[-5%] w-[40%] h-[40%] bg-purple-600/10 rounded-full blur-[120px] pointer-events-none -z-10" />
+      {/* SAASPO STYLE BACKGROUND (Grid + Radial Glow) */}
+      <div className="absolute inset-0 -z-10 h-full w-full bg-black bg-[linear-gradient(to_right,#4f4f4f2e_1px,transparent_1px),linear-gradient(to_bottom,#4f4f4f2e_1px,transparent_1px)] bg-[size:32px_32px]">
+        <div className="absolute left-0 right-0 top-[-10%] -z-10 m-auto h-[600px] w-[600px] rounded-full bg-indigo-600 opacity-[0.15] blur-[120px]"></div>
+      </div>
 
-      {/* NAVIGATION */}
-      <nav className="fixed top-0 w-full border-b border-white/5 bg-[#0a0a0a]/80 backdrop-blur-md z-50">
-        <div className="flex justify-between items-center py-4 px-6 max-w-7xl mx-auto">
-          <div className="flex items-center gap-2 cursor-pointer group">
-            <div className="w-8 h-8 bg-gradient-to-br from-blue-500 to-purple-600 rounded-lg flex items-center justify-center group-hover:shadow-[0_0_20px_rgba(59,130,246,0.5)] transition-all">
-              <Zap size={18} className="text-white fill-white" />
+      {/* MINIMALIST NAV */}
+      <nav className="fixed top-0 w-full z-50 border-b border-white/[0.05] bg-black/50 backdrop-blur-xl">
+        <div className="flex justify-between items-center h-16 px-6 max-w-6xl mx-auto">
+          <div className="flex items-center gap-2 group cursor-pointer">
+            <div className="w-8 h-8 rounded-lg bg-white flex items-center justify-center group-hover:scale-105 transition-transform">
+              <Zap size={18} className="text-black fill-black" />
             </div>
-            <span className="text-xl font-bold tracking-tight">
-              NexusDraft<span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-500">AI</span>
-            </span>
+            <span className="text-lg font-bold tracking-tight">NexusDraft</span>
           </div>
-          <div className="flex items-center gap-6">
-            <button className="hidden text-sm font-medium text-slate-400 hover:text-white transition-colors sm:block">
-              Documentation
-            </button>
-            <button className="hidden text-sm font-medium text-slate-400 hover:text-white transition-colors sm:block">
-              Sign In
-            </button>
-            <button className="bg-white text-black px-5 py-2 rounded-full text-sm font-bold hover:bg-slate-200 transition-all hover:scale-105 active:scale-95">
-              Get Access
-            </button>
-          </div>
+          <button className="text-sm font-semibold text-white/70 hover:text-white transition-colors bg-white/5 hover:bg-white/10 px-4 py-2 rounded-full border border-white/10">
+            Sign In
+          </button>
         </div>
       </nav>
 
-      <main className="pt-32">
+      <main className="pt-40 pb-20 px-6">
         {/* HERO SECTION */}
-        <section className="relative pb-24 px-6 text-center max-w-5xl mx-auto flex flex-col items-center justify-center min-h-[75vh]">
+        <section className="flex flex-col items-center text-center max-w-4xl mx-auto">
           
-          {/* Status Badge */}
-          <div className="inline-flex items-center gap-2 px-3 py-1.5 mb-8 text-xs font-semibold tracking-widest text-blue-300 uppercase bg-blue-500/10 rounded-full border border-blue-500/20 backdrop-blur-sm">
-            <span className="relative flex h-2 w-2">
-              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-blue-400 opacity-75"></span>
-              <span className="relative inline-flex rounded-full h-2 w-2 bg-blue-500"></span>
+          <div className="inline-flex items-center gap-2 px-3 py-1 mb-8 text-xs font-medium tracking-wide text-indigo-300 bg-indigo-500/10 rounded-full border border-indigo-500/20">
+            <span className="relative flex h-1.5 w-1.5">
+              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-indigo-400 opacity-75"></span>
+              <span className="relative inline-flex rounded-full h-1.5 w-1.5 bg-indigo-500"></span>
             </span>
-            Waitlist open for Q4
+            NexusDraft API v2.0 is live
           </div>
 
-          <h1 className="text-6xl md:text-8xl font-extrabold tracking-tighter text-white mb-6 leading-[1.05]">
-            Documentation that <br />
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-500 via-indigo-400 to-purple-500">
-              writes itself.
+          <h1 className="text-6xl md:text-[88px] font-bold tracking-tighter leading-[1.05] mb-6">
+            Docs that write <br />
+            <span className="text-transparent bg-clip-text bg-gradient-to-b from-white to-white/40">
+              themselves.
             </span>
           </h1>
 
-          <p className="text-lg md:text-xl text-slate-400 mb-12 max-w-2xl mx-auto leading-relaxed">
-            NexusDraft AI connects to your GitHub repository and generates high-fidelity technical docs, API references, and READMEs in real-time as you commit.
+          <p className="text-lg md:text-xl text-white/50 mb-10 max-w-2xl mx-auto font-light leading-relaxed tracking-wide">
+            Connect your GitHub. We analyze your commits and instantly generate production-ready documentation, API specs, and change-logs.
           </p>
 
-          {/* INTERACTIVE CONVERSION FORM */}
-          <div className="w-full max-w-md mx-auto">
+          {/* SAASPO STYLE INPUT PILL */}
+          <div className="w-full max-w-md mx-auto mb-16">
             {status !== 'success' ? (
-              <form onSubmit={handleSubmit} className="relative group flex flex-col sm:flex-row gap-2 p-1.5 bg-white/5 rounded-2xl border border-white/10 backdrop-blur-md focus-within:border-blue-500/50 focus-within:bg-white/10 transition-all">
+              <form onSubmit={handleSubmit} className="relative flex items-center p-1 bg-white/5 rounded-full border border-white/10 shadow-2xl focus-within:border-indigo-500/50 focus-within:bg-white/10 transition-all">
                 <input
                   required
                   type="email"
-                  placeholder="Enter your work email"
+                  placeholder="name@startup.com"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
-                  className="flex-1 px-6 py-4 bg-transparent focus:outline-none text-white text-lg placeholder:text-slate-500"
+                  className="flex-1 px-6 py-3 bg-transparent outline-none text-white text-sm placeholder:text-white/30"
                 />
                 <button
                   disabled={status === 'loading'}
-                  className="bg-blue-600 text-white px-8 py-4 rounded-xl font-bold text-base hover:bg-blue-500 hover:shadow-[0_0_25px_rgba(37,99,235,0.5)] transition-all duration-300 active:scale-95 disabled:opacity-70 flex items-center justify-center min-w-[150px]"
+                  className="bg-white text-black px-6 py-3 rounded-full font-semibold text-sm hover:bg-indigo-50 transition-colors disabled:opacity-50 flex items-center gap-2"
                 >
-                  {status === 'loading' ? (
-                    <Loader2 className="animate-spin text-white" />
-                  ) : (
-                    <>Join Waitlist <ArrowRight className="ml-2 h-4 w-4" /></>
-                  )}
+                  {status === 'loading' ? <Loader2 className="animate-spin w-4 h-4" /> : 'Get Early Access'}
                 </button>
               </form>
             ) : (
-              <div className="bg-emerald-500/10 border border-emerald-500/20 p-6 rounded-2xl animate-in fade-in slide-in-from-bottom-4 duration-500 backdrop-blur-md">
-                <div className="flex items-center justify-center gap-3 mb-2">
-                  <div className="w-8 h-8 rounded-full bg-emerald-500/20 flex items-center justify-center">
-                    <CheckCircle className="text-emerald-400" size={18} />
-                  </div>
-                  <h3 className="text-xl font-bold text-white">Priority Access Secured</h3>
-                </div>
-                <p className="text-emerald-200/70 text-sm mb-4">We've reserved a spot for <span className="font-semibold text-white">{email}</span>.</p>
-                <button 
-                  onClick={() => setStatus('idle')}
-                  className="flex items-center gap-2 mx-auto text-xs font-bold text-emerald-400 hover:text-emerald-300 transition-colors uppercase tracking-wider"
-                >
-                  <Share2 size={14} /> Share to skip the line
-                </button>
+              <div className="flex items-center justify-center gap-2 p-4 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-sm font-medium">
+                <CheckCircle size={16} /> You're on the priority list.
               </div>
             )}
+          </div>
+        </section>
+
+        {/* SAASPO BENTO GRID */}
+        <section className="max-w-5xl mx-auto">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
             
-            <p className="mt-6 text-sm font-medium text-slate-500 flex items-center justify-center gap-2">
-              <Shield size={14} className="text-blue-400" /> SOC2 Compliant & Zero-Data Training
-            </p>
-          </div>
-        </section>
-
-        {/* METRICS SECTION */}
-        <section className="border-y border-white/5 bg-white/[0.02]">
-          <div className="max-w-7xl mx-auto px-6 py-16">
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-12">
-              {[
-                { metric: "98%", label: "Time Saved on Docs" },
-                { metric: "12k+", label: "Repositories Synced" },
-                { metric: "<1s", label: "Delta Update Latency" },
-                { metric: "Zero", label: "Code Stored or Trained" }
-              ].map((item, i) => (
-                <div key={i} className="text-center">
-                  <div className="text-4xl md:text-5xl font-black text-white mb-2 tracking-tighter">{item.metric}</div>
-                  <div className="text-xs font-bold text-slate-500 uppercase tracking-widest">{item.label}</div>
-                </div>
-              ))}
+            {/* Main Feature */}
+            <div className="md:col-span-2 p-8 rounded-[32px] bg-white/[0.03] border border-white/10 hover:bg-white/[0.05] transition-colors relative overflow-hidden group">
+              <div className="absolute top-0 right-0 w-64 h-64 bg-indigo-500/10 rounded-full blur-[80px] -z-10 group-hover:bg-indigo-500/20 transition-colors"></div>
+              <Terminal size={32} className="text-white/80 mb-6" />
+              <h3 className="text-2xl font-semibold mb-2">Automated Changelogs</h3>
+              <p className="text-white/50 text-sm leading-relaxed max-w-sm">Every PR merge automatically triggers a beautiful, human-readable changelog generation based on diff analysis.</p>
             </div>
-          </div>
-        </section>
 
-        {/* FEATURES GRID */}
-        <section className="py-32 px-6 max-w-7xl mx-auto relative">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-5xl font-bold tracking-tight mb-4">Engineered for Velocity.</h2>
-            <p className="text-slate-400 max-w-2xl mx-auto">Your code is the source of truth. We just translate it into plain English instantly.</p>
-          </div>
+            {/* Side Feature 1 */}
+            <div className="p-8 rounded-[32px] bg-white/[0.03] border border-white/10 hover:bg-white/[0.05] transition-colors">
+              <GitBranch size={28} className="text-white/80 mb-6" />
+              <h3 className="text-xl font-semibold mb-2">Syncs to main</h3>
+              <p className="text-white/50 text-sm leading-relaxed">Direct integration with GitHub Actions.</p>
+            </div>
 
-          <div className="grid md:grid-cols-3 gap-6">
-            {[
-              { 
-                icon: <GitMerge size={24} className="text-blue-400" />, 
-                title: "Real-time Delta Sync", 
-                desc: "Hooks directly into your CI/CD pipeline. Every merge to main updates your docs instantly." 
-              },
-              { 
-                icon: <Code2 size={24} className="text-purple-400" />, 
-                title: "Contextual Logic Parsing", 
-                desc: "It doesn't just read comments. It understands complex business logic and architectural flow." 
-              },
-              { 
-                icon: <Shield size={24} className="text-emerald-400" />, 
-                title: "Air-Gapped Privacy", 
-                desc: "Your proprietary code never touches our models. Processed securely via isolated edge containers." 
-              }
-            ].map((feature, i) => (
-              <div key={i} className="p-8 rounded-3xl border border-white/5 bg-[#111111] hover:bg-[#151515] hover:border-white/10 transition-all duration-300 group">
-                <div className="w-14 h-14 bg-white/5 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
-                  {feature.icon}
+            {/* Side Feature 2 */}
+            <div className="md:col-span-3 p-8 rounded-[32px] bg-gradient-to-r from-indigo-900/40 to-black border border-indigo-500/20 flex flex-col md:flex-row items-center justify-between gap-6">
+              <div className="flex items-center gap-4">
+                <div className="p-3 bg-indigo-500/20 rounded-2xl">
+                  <ShieldAlert className="text-indigo-400" size={24} />
                 </div>
-                <h3 className="text-xl font-bold mb-3 text-white tracking-tight">{feature.title}</h3>
-                <p className="text-slate-400 leading-relaxed text-sm">{feature.desc}</p>
+                <div>
+                  <h3 className="text-lg font-semibold text-white">Enterprise Security</h3>
+                  <p className="text-indigo-200/60 text-sm">SOC2 Type II Compliant. Zero data retention policy.</p>
+                </div>
               </div>
-            ))}
+              <button className="text-sm font-semibold text-indigo-400 hover:text-indigo-300 flex items-center gap-1">
+                View Security Trust Center <ArrowRight size={14} />
+              </button>
+            </div>
+
           </div>
         </section>
       </main>
-
-      <footer className="py-12 border-t border-white/5 text-center flex flex-col items-center justify-center bg-[#050505]">
-        <div className="flex items-center gap-2 opacity-50 mb-4">
-           <Zap size={16} className="text-white" />
-           <span className="font-bold tracking-tight text-white">NexusDraft AI</span>
-        </div>
-        <p className="text-slate-600 text-sm">© 2026 NexusDraft Inc. All rights reserved.</p>
-      </footer>
     </div>
   );
 }
