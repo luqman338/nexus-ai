@@ -1,8 +1,7 @@
-
 'use client';
 
 import React, { useState } from 'react';
-import { CheckCircle, Zap, ArrowRight, Loader2, GitBranch, Terminal, ShieldAlert } from 'lucide-react';
+import { CheckCircle, Zap, ArrowRight, Loader2, GitBranch, Terminal, ShieldCheck, Cpu } from 'lucide-react';
 
 export default function LandingPage() {
   const [email, setEmail] = useState('');
@@ -12,120 +11,109 @@ export default function LandingPage() {
     e.preventDefault();
     if (!email) return;
     setStatus('loading');
-    setTimeout(() => setStatus('success'), 1200);
+    setTimeout(() => setStatus('success'), 1500);
   };
 
   return (
     <div className="relative min-h-screen bg-black text-white selection:bg-indigo-500/30 overflow-x-hidden font-sans">
       
-      {/* SAASPO STYLE BACKGROUND (Grid + Radial Glow) */}
-      <div className="absolute inset-0 -z-10 h-full w-full bg-black bg-[linear-gradient(to_right,#4f4f4f2e_1px,transparent_1px),linear-gradient(to_bottom,#4f4f4f2e_1px,transparent_1px)] bg-[size:32px_32px]">
-        <div className="absolute left-0 right-0 top-[-10%] -z-10 m-auto h-[600px] w-[600px] rounded-full bg-indigo-600 opacity-[0.15] blur-[120px]"></div>
+      {/* THE "SAASPO" GRID & GLOW */}
+      <div className="absolute inset-0 -z-10 h-full w-full bg-black bg-[linear-gradient(to_right,#ffffff0a_1px,transparent_1px),linear-gradient(to_bottom,#ffffff0a_1px,transparent_1px)] bg-[size:40px_40px]">
+        <div className="absolute left-0 right-0 top-0 -z-10 m-auto h-[500px] w-full rounded-full bg-indigo-600 opacity-[0.15] blur-[120px]"></div>
       </div>
 
-      {/* MINIMALIST NAV */}
-      <nav className="fixed top-0 w-full z-50 border-b border-white/[0.05] bg-black/50 backdrop-blur-xl">
-        <div className="flex justify-between items-center h-16 px-6 max-w-6xl mx-auto">
-          <div className="flex items-center gap-2 group cursor-pointer">
-            <div className="w-8 h-8 rounded-lg bg-white flex items-center justify-center group-hover:scale-105 transition-transform">
-              <Zap size={18} className="text-black fill-black" />
-            </div>
-            <span className="text-lg font-bold tracking-tight">NexusDraft</span>
+      {/* HEADER */}
+      <nav className="flex justify-between items-center h-20 px-8 max-w-7xl mx-auto border-b border-white/5">
+        <div className="flex items-center gap-2 group cursor-pointer">
+          <div className="w-8 h-8 rounded-lg bg-indigo-600 flex items-center justify-center">
+            <Zap size={18} className="text-white fill-white" />
           </div>
-          <button className="text-sm font-semibold text-white/70 hover:text-white transition-colors bg-white/5 hover:bg-white/10 px-4 py-2 rounded-full border border-white/10">
-            Sign In
-          </button>
+          <span className="text-xl font-bold tracking-tighter">NexusDraft</span>
         </div>
+        <button className="text-sm font-bold bg-white text-black px-6 py-2 rounded-full hover:bg-slate-200 transition-all">
+          Get Access
+        </button>
       </nav>
 
-      <main className="pt-40 pb-20 px-6">
+      <main className="pt-32 pb-20 px-6">
         {/* HERO SECTION */}
-        <section className="flex flex-col items-center text-center max-w-4xl mx-auto">
-          
-          <div className="inline-flex items-center gap-2 px-3 py-1 mb-8 text-xs font-medium tracking-wide text-indigo-300 bg-indigo-500/10 rounded-full border border-indigo-500/20">
-            <span className="relative flex h-1.5 w-1.5">
-              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-indigo-400 opacity-75"></span>
-              <span className="relative inline-flex rounded-full h-1.5 w-1.5 bg-indigo-500"></span>
-            </span>
-            NexusDraft API v2.0 is live
+        <section className="flex flex-col items-center text-center max-w-5xl mx-auto">
+          <div className="inline-flex items-center gap-2 px-3 py-1 mb-10 text-[10px] font-bold tracking-[0.2em] text-indigo-400 uppercase bg-indigo-500/10 rounded-full border border-indigo-500/20">
+            <span className="flex h-1.5 w-1.5 rounded-full bg-indigo-500 animate-pulse" />
+            V1.0 is officially open
           </div>
 
-          <h1 className="text-6xl md:text-[88px] font-bold tracking-tighter leading-[1.05] mb-6">
-            Docs that write <br />
-            <span className="text-transparent bg-clip-text bg-gradient-to-b from-white to-white/40">
-              themselves.
-            </span>
+          <h1 className="text-6xl md:text-[92px] font-black tracking-[-0.05em] leading-[0.9] mb-8">
+            Code into docs. <br />
+            <span className="text-white/40">In seconds.</span>
           </h1>
 
-          <p className="text-lg md:text-xl text-white/50 mb-10 max-w-2xl mx-auto font-light leading-relaxed tracking-wide">
-            Connect your GitHub. We analyze your commits and instantly generate production-ready documentation, API specs, and change-logs.
+          <p className="text-xl text-slate-400 mb-12 max-w-2xl mx-auto font-medium leading-relaxed">
+            NexusDraft AI bridges the gap between your GitHub commits and your documentation. Stop writing—start shipping.
           </p>
 
-          {/* SAASPO STYLE INPUT PILL */}
-          <div className="w-full max-w-md mx-auto mb-16">
+          {/* CONVERSION BOX */}
+          <div className="w-full max-w-lg mx-auto mb-24">
             {status !== 'success' ? (
-              <form onSubmit={handleSubmit} className="relative flex items-center p-1 bg-white/5 rounded-full border border-white/10 shadow-2xl focus-within:border-indigo-500/50 focus-within:bg-white/10 transition-all">
+              <form onSubmit={handleSubmit} className="flex p-1.5 bg-white/5 rounded-2xl border border-white/10 backdrop-blur-xl group focus-within:border-indigo-500/50 transition-all">
                 <input
                   required
                   type="email"
-                  placeholder="name@startup.com"
+                  placeholder="name@company.com"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
-                  className="flex-1 px-6 py-3 bg-transparent outline-none text-white text-sm placeholder:text-white/30"
+                  className="flex-1 px-6 bg-transparent outline-none text-white font-medium"
                 />
                 <button
                   disabled={status === 'loading'}
-                  className="bg-white text-black px-6 py-3 rounded-full font-semibold text-sm hover:bg-indigo-50 transition-colors disabled:opacity-50 flex items-center gap-2"
+                  className="bg-indigo-600 text-white px-8 py-4 rounded-xl font-bold hover:bg-indigo-500 transition-all shadow-[0_0_20px_rgba(79,70,229,0.4)] active:scale-95"
                 >
-                  {status === 'loading' ? <Loader2 className="animate-spin w-4 h-4" /> : 'Get Early Access'}
+                  {status === 'loading' ? <Loader2 className="animate-spin" /> : 'Join Waitlist'}
                 </button>
               </form>
             ) : (
-              <div className="flex items-center justify-center gap-2 p-4 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-sm font-medium">
-                <CheckCircle size={16} /> You're on the priority list.
+              <div className="p-6 rounded-2xl bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 font-bold animate-in zoom-in-95 duration-300">
+                <CheckCircle className="inline-block mr-2" /> You are on the list!
               </div>
             )}
           </div>
-        </section>
 
-        {/* SAASPO BENTO GRID */}
-        <section className="max-w-5xl mx-auto">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+          {/* BENTO BOX GRID */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 w-full text-left">
+            <div className="md:col-span-2 p-10 rounded-[32px] bg-white/[0.03] border border-white/10 hover:border-white/20 transition-all">
+               <Terminal size={32} className="text-indigo-400 mb-6" />
+               <h3 className="text-2xl font-bold mb-4">Semantic Code Intelligence</h3>
+               <p className="text-slate-400 leading-relaxed">Our models don't just read syntax. They understand the architecture of your pull requests to write documentation that actually makes sense to humans.</p>
+            </div>
             
-            {/* Main Feature */}
-            <div className="md:col-span-2 p-8 rounded-[32px] bg-white/[0.03] border border-white/10 hover:bg-white/[0.05] transition-colors relative overflow-hidden group">
-              <div className="absolute top-0 right-0 w-64 h-64 bg-indigo-500/10 rounded-full blur-[80px] -z-10 group-hover:bg-indigo-500/20 transition-colors"></div>
-              <Terminal size={32} className="text-white/80 mb-6" />
-              <h3 className="text-2xl font-semibold mb-2">Automated Changelogs</h3>
-              <p className="text-white/50 text-sm leading-relaxed max-w-sm">Every PR merge automatically triggers a beautiful, human-readable changelog generation based on diff analysis.</p>
+            <div className="p-10 rounded-[32px] bg-gradient-to-br from-indigo-600/20 to-transparent border border-white/10">
+               <GitBranch size={32} className="text-white mb-6" />
+               <h3 className="text-2xl font-bold mb-4">Git Native</h3>
+               <p className="text-slate-400 leading-relaxed">Integrated directly into your workflow.</p>
             </div>
 
-            {/* Side Feature 1 */}
-            <div className="p-8 rounded-[32px] bg-white/[0.03] border border-white/10 hover:bg-white/[0.05] transition-colors">
-              <GitBranch size={28} className="text-white/80 mb-6" />
-              <h3 className="text-xl font-semibold mb-2">Syncs to main</h3>
-              <p className="text-white/50 text-sm leading-relaxed">Direct integration with GitHub Actions.</p>
+            <div className="p-10 rounded-[32px] bg-white/[0.03] border border-white/10">
+               <ShieldCheck size={32} className="text-emerald-400 mb-6" />
+               <h3 className="text-2xl font-bold mb-4">SOC2 Secure</h3>
+               <p className="text-slate-400 leading-relaxed">Your code stays yours. Period.</p>
             </div>
 
-            {/* Side Feature 2 */}
-            <div className="md:col-span-3 p-8 rounded-[32px] bg-gradient-to-r from-indigo-900/40 to-black border border-indigo-500/20 flex flex-col md:flex-row items-center justify-between gap-6">
-              <div className="flex items-center gap-4">
-                <div className="p-3 bg-indigo-500/20 rounded-2xl">
-                  <ShieldAlert className="text-indigo-400" size={24} />
-                </div>
-                <div>
-                  <h3 className="text-lg font-semibold text-white">Enterprise Security</h3>
-                  <p className="text-indigo-200/60 text-sm">SOC2 Type II Compliant. Zero data retention policy.</p>
-                </div>
-              </div>
-              <button className="text-sm font-semibold text-indigo-400 hover:text-indigo-300 flex items-center gap-1">
-                View Security Trust Center <ArrowRight size={14} />
-              </button>
+            <div className="md:col-span-2 p-10 rounded-[32px] bg-white/[0.03] border border-white/10 flex flex-col md:flex-row items-center gap-8">
+               <div className="w-full md:w-1/3 bg-indigo-500/20 aspect-video rounded-2xl flex items-center justify-center">
+                  <Cpu size={40} className="text-indigo-400 animate-pulse" />
+               </div>
+               <div>
+                  <h3 className="text-2xl font-bold mb-2">Edge-Speed Delivery</h3>
+                  <p className="text-slate-400 leading-relaxed">Processed globally. Zero latency documentation updates.</p>
+               </div>
             </div>
-
           </div>
         </section>
       </main>
+
+      <footer className="py-20 border-t border-white/5 text-center text-slate-600 text-sm font-medium">
+        © 2026 NexusDraft Inc. Optimized for 99th percentile velocity.
+      </footer>
     </div>
   );
 }
